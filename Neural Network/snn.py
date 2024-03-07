@@ -20,19 +20,19 @@ training_outputs = np.array([[0,1,1,0]]).T
 # seed random numbers to make calculation
 np.random.seed(1)
 
-# initialize weights randomly with mean 0 to create weight matrix, synaptic weights
-synaptic_weights = 2 * np.random.random((3,1)) - 1
+# initialize weights randomly with mean 0 to create weight matrix,  weights
+weights = 2 * np.random.random((3,1)) - 1
 
-print('Random starting synaptic weights: ')
-print(synaptic_weights)
+print('Random starting weights: ')
+print(weights)
 
 # Iterate 10,000 times
 for iteration in range(10000):
 
     # Define input layer
     input_layer = training_inputs
-    # Normalize the product of the input layer with the synaptic weights
-    outputs = sigmoid(np.dot(input_layer, synaptic_weights))
+    # Normalize the product of the input layer with the weights
+    outputs = sigmoid(np.dot(input_layer, weights))
 
     # how much did we miss?
     error = training_outputs - outputs
@@ -42,10 +42,10 @@ for iteration in range(10000):
     adjustments = error * sigmoid_derivative(outputs)
 
     # update weights
-    synaptic_weights += np.dot(input_layer.T, adjustments)
+    weights += np.dot(input_layer.T, adjustments)
 
-print('Synaptic weights after training: ')
-print(synaptic_weights)
+print('weights after training: ')
+print(weights)
 
 print("Output After Training:")
 print(outputs)
